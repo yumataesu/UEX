@@ -13,8 +13,8 @@ UCLASS()
 class UE4LS_API ALevelManagerActor : public AActor
 {
 	GENERATED_BODY()
-	
-public:	
+
+public:
 	// Sets default values for this actor's properties
 	ALevelManagerActor();
 
@@ -22,23 +22,38 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-public:	
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
 	UFUNCTION(BlueprintCallable)
 	void EnableReadyUnloadLevel(const FString& LevelName)
 	{
+		if (ACustomLevelScriptActor* La = GetCustomLevelScriptActorByName(LevelName))
+		{
+			La->bReadyUnload = true;
+		}
+	}
+
+	UFUNCTION(BlueprintCallable)
+	void DisableReadyUnloadLevel(const FString& LevelName)
+	{
+		if (ACustomLevelScriptActor* La = GetCustomLevelScriptActorByName(LevelName))
+		{
+			La->bReadyUnload = false;
+		}
+	}
+
+private:
+	ACustomLevelScriptActor* GetCustomLevelScriptActorByName(const FString& LevelName)
+	{
 		for (const auto* Level : GetWorld()->GetLevels())
 		{
 			if (Level->GetOuter()->GetName() == LevelName)
 			{
-				if (ACustomLevelScriptActor* La = Cast<ACustomLevelScriptActor>(Level->GetLevelScriptActor()))
-				{
-					La->bReadyUnload = true;
-					UE_LOG(LogTemp, Warning, TEXT("Ready To Unload :  %s"), *LevelName);
-				}
+				return Cast<ACustomLevelScriptActor>(Level->GetLevelScriptActor());
 			}
 		}
+		return nullptr;
 	}
 };

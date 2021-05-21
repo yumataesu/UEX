@@ -15,12 +15,20 @@ class UE4LS_API ACustomLevelScriptActor : public ALevelScriptActor
 	GENERATED_BODY()
 	
 public:
-	UPROPERTY(BlueprintReadWrite)
+	ACustomLevelScriptActor();
+	~ACustomLevelScriptActor();
+	virtual void BeginPlay() override;
+
+	UFUNCTION(BlueprintCallable)
+	void UpdateDisolveProgress(float DeltaTime);
+
+
+	UPROPERTY(BlueprintReadOnly)
 		float DisolveProgress;
 
 	UPROPERTY(BlueprintReadWrite)
 		float DisolveMaxTime;
 
-	UPROPERTY(BlueprintReadWrite)
+	UPROPERTY(BlueprintReadOnly)
 		bool bReadyUnload;
 };
