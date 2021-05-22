@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "Engine/LevelScriptActor.h"
+#include "GameFramework/Actor.h"
+#include "Kismet/GameplayStatics.h"
 #include "CustomLevelScriptActor.generated.h"
 
 /**
@@ -31,4 +33,7 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 		bool bReadyUnload;
+
+
+	TArray<AActor*> AllActors;
 };
