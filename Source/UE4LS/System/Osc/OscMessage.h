@@ -2,6 +2,8 @@
 
 #pragma once
 
+#include <vector>
+
 #include "CoreMinimal.h"
 #include "OscArg.h"
 #include "Kismet/BlueprintFunctionLibrary.h"
@@ -56,9 +58,9 @@ public:
 	bool getArgAsTrigger(std::size_t index) const;
 
 
-	void addIntArg(std::int32_t argument);
-	void addInt32Arg(std::int32_t argument);
-	void addInt64Arg(std::int64_t argument);
+	void addIntArg(int32 argument);
+	void addInt32Arg(int32 argument);
+	void addInt64Arg(int64 argument);
 	void addFloatArg(float argument);
 	void addDoubleArg(double argument);
 	void addStringArg(const FString& argument);

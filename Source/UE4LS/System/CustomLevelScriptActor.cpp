@@ -8,8 +8,6 @@ ACustomLevelScriptActor::ACustomLevelScriptActor()
 {
 	PrimaryActorTick.bCanEverTick = true;
 	PrimaryActorTick.bStartWithTickEnabled = true;
-
-
 }
 
 

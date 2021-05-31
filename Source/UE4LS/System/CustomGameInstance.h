@@ -25,4 +25,7 @@ public:
 
 	UFUNCTION(Category = "Test", BlueprintImplementableEvent, BlueprintCallable)
 		void NotifyUnloadScene(const FString& LevelName);
+
+	FMatrix Modelview;
+	FMatrix Projection;
 };

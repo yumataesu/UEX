@@ -187,6 +187,65 @@ void UOscReceiverComponent::CallbackMainThread()
     auto* GameInstance = Cast<UCustomGameInstance>(UGameplayStatics::GetGameInstance(this));
     while (MessageQue.Dequeue(msg))
     {
+        if (msg.getAddress() == FString("/projection"))
+        {
+            //UE_LOG(LogTemp, Error, TEXT("/proj : %i"), msg.getNumArgs());
+            FMatrix m;
+            m.SetIdentity();
+
+            m.M[0][0] = msg.getArgAsFloat(0);
+            m.M[0][1] = msg.getArgAsFloat(1);
+            m.M[0][2] = msg.getArgAsFloat(2);
+            m.M[0][3] = msg.getArgAsFloat(3);
+
+            m.M[1][0] = msg.getArgAsFloat(4);
+            m.M[1][1] = msg.getArgAsFloat(5);
+            m.M[1][2] = msg.getArgAsFloat(6);
+            m.M[1][3] = msg.getArgAsFloat(7);
+
+            m.M[2][0] = msg.getArgAsFloat(8);
+            m.M[2][1] = msg.getArgAsFloat(9);
+            m.M[2][2] = msg.getArgAsFloat(10);
+            m.M[2][3] = msg.getArgAsFloat(11);
+
+            m.M[3][0] = msg.getArgAsFloat(12);
+            m.M[3][1] = msg.getArgAsFloat(13);
+            m.M[3][2] = msg.getArgAsFloat(14);
+            m.M[3][3] = msg.getArgAsFloat(15);
+
+            GameInstance->Projection = m;
+
+        }
+
+        if (msg.getAddress() == FString("/modelview"))
+        {
+            //UE_LOG(LogTemp, Error, TEXT("/modelview : %i"), msg.getNumArgs());
+
+            FMatrix m;
+            m.SetIdentity();
+
+            m.M[0][0] = msg.getArgAsFloat(0);
+            m.M[0][1] = msg.getArgAsFloat(1);
+            m.M[0][2] = msg.getArgAsFloat(2);
+            m.M[0][3] = msg.getArgAsFloat(3);
+
+            m.M[1][0] = msg.getArgAsFloat(4);
+            m.M[1][1] = msg.getArgAsFloat(5);
+            m.M[1][2] = msg.getArgAsFloat(6);
+            m.M[1][3] = msg.getArgAsFloat(7);
+
+            m.M[2][0] = msg.getArgAsFloat(8);
+            m.M[2][1] = msg.getArgAsFloat(9);
+            m.M[2][2] = msg.getArgAsFloat(10);
+            m.M[2][3] = msg.getArgAsFloat(11);
+
+            m.M[3][0] = msg.getArgAsFloat(12);
+            m.M[3][1] = msg.getArgAsFloat(13);
+            m.M[3][2] = msg.getArgAsFloat(14);
+            m.M[3][3] = msg.getArgAsFloat(15);
+
+            GameInstance->Modelview = m;
+        }
         GameInstance->NotifyReceivedOsc(msg);
     }
 }
