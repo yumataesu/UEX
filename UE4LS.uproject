@@ -21,6 +21,13 @@
 		{
 			"Name": "SunPosition",
 			"Enabled": true
+		},
+		{
+			"Name": "Spout2",
+			"Enabled": true,
+			"SupportedTargetPlatforms": [
+				"Win64"
+			]
 		}
 	]
 }

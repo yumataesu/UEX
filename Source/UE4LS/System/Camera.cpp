@@ -35,6 +35,8 @@ void ACamera::Tick(float DeltaSeconds)
 	auto* GameInstance = Cast<UCustomGameInstance>(UGameplayStatics::GetGameInstance(this));
 	auto _Modelview = GameInstance->Modelview.GetTransposed();
 	auto _Projection = GameInstance->Projection.GetTransposed();
+	
+	//UE_LOG(LogTemp, Warning, TEXT("%s"), *_Modelview.ToString());
 
 	// update modelview
 	{
