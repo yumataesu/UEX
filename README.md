@@ -1,5 +1,5 @@
 # UEX
-SUPER W.I.P UE4 setup with TD for Live production system
+SUPER W.I.P UE4 setup with TD for VJ
 
 * Transform camera by OSC from TouchDesigner
 * Load/Unload levels by OSC from TouchDesigner
